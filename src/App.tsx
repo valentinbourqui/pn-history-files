@@ -14,7 +14,7 @@ function App() {
     const folderId = "1Y0zWn74fRmo32APXO1CMSsZ7b_tfR5z4"; // Replace with your actual folder ID
     try {
       const response = await fetch(
-        `https://www.googleapis.com/drive/v3/files?q='${folderId}' in parents and fullText contains '${query}'&fields=files(id, name)&key=${process.env.GOOGLE_API_KEY}`
+        `https://www.googleapis.com/drive/v3/files?q='${folderId}' in parents and fullText contains '${query}'&fields=files(id, name)&key=${process.env.REACT_APP_MY_KEY}`
       );
       const data = await response.json();
       setFiles(data.files);
