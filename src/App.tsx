@@ -48,7 +48,7 @@ function App() {
       </div>
 
       <div>
-        {files.map((file: any) => (
+        {files?.map((file) => (
           <div key={file.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px', border: '1px solid #ddd', borderRadius: '4px', marginBottom: '8px' }}>
             <div>
               <p style={{ margin: 0 }}>{file.name}</p>
