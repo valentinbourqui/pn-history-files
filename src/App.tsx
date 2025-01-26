@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './App.css'
+
+interface GoogleDriveFile {
+  id: string;
+  name: string;
+}
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [files, setFiles] = useState([]);
+  const [files, setFiles] = useState<GoogleDriveFile>([]);
 
-  const fetchFiles = async (query) => {
+  const fetchFiles = async (query:string) => {
     const folderId = "1Y0zWn74fRmo32APXO1CMSsZ7b_tfR5z4"; // Replace with your actual folder ID
     try {
       const response = await fetch(
@@ -43,7 +48,7 @@ function App() {
       </div>
 
       <div>
-        {files.map((file) => (
+        {files.map((file: any) => (
           <div key={file.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px', border: '1px solid #ddd', borderRadius: '4px', marginBottom: '8px' }}>
             <div>
               <p style={{ margin: 0 }}>{file.name}</p>
