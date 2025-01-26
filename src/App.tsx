@@ -8,7 +8,7 @@ interface GoogleDriveFile {
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [files, setFiles] = useState<GoogleDriveFile>([]);
+  const [files, setFiles] = useState<GoogleDriveFile[]>([]);
 
   const fetchFiles = async (query:string) => {
     const folderId = "1Y0zWn74fRmo32APXO1CMSsZ7b_tfR5z4"; // Replace with your actual folder ID
