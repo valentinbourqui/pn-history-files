@@ -1,35 +1,66 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React, { useState } from 'react';
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [searchTerm, setSearchTerm] = useState("");
+  const [files, setFiles] = useState([]);
+
+  const fetchFiles = async (query) => {
+    const folderId = "1Y0zWn74fRmo32APXO1CMSsZ7b_tfR5z4"; // Replace with your actual folder ID
+    try {
+      const response = await fetch(
+        `https://www.googleapis.com/drive/v3/files?q='${folderId}' in parents and fullText contains '${query}'&fields=files(id, name)&key=${process.env.GOOGLE_API_KEY}`
+      );
+      const data = await response.json();
+      setFiles(data.files);
+    } catch (error) {
+      console.error("Error fetching files:", error);
+    }
+  };
+
+  const handleSearch = () => {
+    if (searchTerm.trim()) {
+      fetchFiles(searchTerm);
+    }
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+    <div style={{ padding: '16px', fontFamily: 'Arial, sans-serif' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
+        <input
+          type="text"
+          placeholder="Rechercher un cours"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          style={{ flex: 1, padding: '8px', border: '1px solid #ccc', borderRadius: '4px' }}
+        />
+        <button
+          onClick={handleSearch}
+          style={{ padding: '8px 16px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
+        >
+          Rechercher
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+
+      <div>
+        {files.map((file) => (
+          <div key={file.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px', border: '1px solid #ddd', borderRadius: '4px', marginBottom: '8px' }}>
+            <div>
+              <p style={{ margin: 0 }}>{file.name}</p>
+            </div>
+            <a
+              href={`https://drive.google.com/file/d/${file.id}/view`}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: '#007bff', textDecoration: 'none' }}
+            >
+              Voir le fichier
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 export default App
