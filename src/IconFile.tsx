@@ -6,7 +6,7 @@ const IconFile = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 stroke="#222222"
-                className="file-icon w-12 h-12"
+                className="file-icon"
             >
                 <path
                     d="M21.207 4.5a1 1 0 0 1 .293.707V22.5a1 1 0 0 1-1 1h-17a1 1 0 0 1-1-1v-21a1 1 0 0 1 1-1h13.293a1 1 0 0 1 .707.293Z"
