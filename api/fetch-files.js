@@ -7,7 +7,7 @@ export default async function handler(req, res) {
 
   try {
       const response = await fetch(
-        `https://www.googleapis.com/drive/v3/files?q='${folderId}' in parents and fullText contains '${query}'&fields=files(id, name)&key=${apiKey}`
+        `https://www.googleapis.com/drive/v3/files?pageSize=1000&q='${folderId}' in parents ${query ? `and fullText contains '${query}'`:""}&fields=files(id, name)&key=${apiKey}`
       );
     const data = await response.json();
     res.status(200).json(data);

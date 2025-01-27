@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+a:after {
+    border: 0 solid #e5e7eb;
+    box-sizing: border-box;
+}
+
+.file-icon {
+	fill: #009984;
+	flex-shrink: 0;
+	fill: transparent;
+	stroke: #009984;
+	stroke-width: 2px;
+  width: 22px;
+}
+
+.file-search {
+  flex-shrink: 0;
+	fill: transparent;
+  stroke: #009984;
+	stroke-width: 2px;
+  width: 22px;
+}
+
+a {
+  color:#009984 !important;
+  text-decoration: none;
+}
+
+div.input:has(>input:not([type=checkbox]),>select), input:not(div>input:not([type=checkbox])), select:not(div>select) {
+    border-radius: .25rem;
+    border-width: 1px;
+    --tw-border-opacity: 1;
+    border-color: rgb(156 163 175 / var(--tw-border-opacity, 1));
+    --tw-bg-opacity: 1;
+    background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+    padding: .75rem 1rem;
+}
+
+input:focus {
+  outline: none;
+}
