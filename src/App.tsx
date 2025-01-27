@@ -10,12 +10,13 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [files, setFiles] = useState<GoogleDriveFile[]>([]);
 
-  const fetchFiles = async (query:string) => {
-    const folderId = "1Y0zWn74fRmo32APXO1CMSsZ7b_tfR5z4"; // Replace with your actual folder ID
+
+  const fetchFiles = async (query) => {
     try {
-      const response = await fetch(
-        `https://www.googleapis.com/drive/v3/files?q='${folderId}' in parents and fullText contains '${query}'&fields=files(id, name)&key=${process.env.REACT_APP_MY_KEY}`
-      );
+      const response = await fetch(`/api/fetch-files?query=${encodeURIComponent(query)}`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch files");
+      }
       const data = await response.json();
       setFiles(data.files);
     } catch (error) {
