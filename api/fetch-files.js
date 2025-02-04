@@ -2,8 +2,8 @@ import 'dotenv/config';
 
 export default async function handler(req, res) {
   const { query, pageToken, language } = req.query;
-  const folderIdFr = "19ZCir_edp2VvHdcOZ1qgQKhYkAAyPVlt";
-  const folderIdDe = "1rRJ_9UG-kEYmuChynpBxJ9RCX5aoa7dj";
+  const folderIdFr = "1Y0zWn74fRmo32APXO1CMSsZ7b_tfR5z4";
+  const folderIdDe = "1Y0zWn74fRmo32APXO1CMSsZ7b_tfR5z4";
   const apiKey = process.env.GOOGLE_API_KEY;
 
   try {
